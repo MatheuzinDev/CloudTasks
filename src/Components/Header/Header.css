@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+    gap: 1vw;
+}
+
+.header .logo {
+    width: 12vw;
+}
+
+.header .labelLogo {
+    font-size: 48px;
+    font-family: 'Montserrat', sans-serif;
+    color: #11BCFF;
+}
