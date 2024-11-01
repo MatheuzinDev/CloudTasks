@@ -1,0 +1,26 @@
+.bodyHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 14vh;
+    height: 48vh;
+    width: 70vw;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.bodyHeader h2 {
+    font-size: 40px;
+    font-family: "Montserrat", sans-serif;
+}
+
+
+.childBodyHeader {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
