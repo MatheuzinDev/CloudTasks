@@ -20,3 +20,79 @@
     font-family: 'Montserrat', sans-serif;
     color: #11BCFF;
 }
+
+@media (min-width: 366px) and (max-width: 819px){
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+        gap: 1vw;
+    }
+    
+    .header .logo {
+        width: 24vw;
+    }
+    
+    .header .labelLogo {
+        font-size: 38px;
+        font-family: 'Montserrat', sans-serif;
+        color: #11BCFF;
+    }
+}
+
+@media (min-width: 430px) and (max-width: 1040px){
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+        gap: 1vw;
+    }
+    
+    .header .logo {
+        width: 24vw;
+    }
+    
+    .header .labelLogo {
+        font-size: 38px;
+        font-family: 'Montserrat', sans-serif;
+        color: #11BCFF;
+    }
+}
+
+
+@media (min-width: 820px) and (max-width: 1180px){
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 25vh;
+        gap: 1vw;
+    }
+    
+    .header .logo {
+        width: 20vw;
+    }
+    
+    .header .labelLogo {
+        font-size: 52px;
+        font-family: 'Montserrat', sans-serif;
+        color: #11BCFF;
+    }
+}

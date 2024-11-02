@@ -7,3 +7,27 @@
     border-radius: 5px;
     font-size: 24px;
 }
+
+@media (min-width: 366px) and (max-width: 819px){
+    .button {
+        width: 75vw;
+        background-color: #11BCFF;
+        color: black;
+        border: none;
+        height: 10vh;
+        border-radius: 5px;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 430px) and (max-width: 1040px){
+    .button {
+        width: 70vw;
+        background-color: #11BCFF;
+        color: black;
+        border: none;
+        height: 10vh;
+        border-radius: 5px;
+        font-size: 24px;
+    } 
+}
