@@ -1,0 +1,4 @@
+.input::placeholder{
+    color: rgba(138, 128, 128, 0.3);
+    opacity: 1;
+}

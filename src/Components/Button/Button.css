@@ -5,7 +5,7 @@
     border: none;
     height: 10vh;
     border-radius: 5px;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 @media (min-width: 366px) and (max-width: 819px){
