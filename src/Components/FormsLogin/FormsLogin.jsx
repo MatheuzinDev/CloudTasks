@@ -41,16 +41,18 @@ function FormsLogin() {
         <div className='divButtons'>
           <Button
             text="Login"
-            width="15vw"
+            width="14vw"
             height="6vh"
+            fontSize="18px"
           />
 
           <p>Não tem uma conta?</p>
 
-          <Link to="/register"><Button
+          <Link style={{textDecoration: "none"}} to="/register"><Button
             text="Criar conta"
-            width="15vw"
+            width="14vw"
             height="6vh"
+            fontSize="18px"
           /></Link>
         </div>
       </Form>

@@ -13,6 +13,7 @@ function Button(props) {
     cursor: 'pointer',
     marginLeft: props.marginLeft,
     fontSize: props.fontSize,
+    textDecoration: props.textDecoration,
   };
 
   

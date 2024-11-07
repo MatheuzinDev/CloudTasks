@@ -73,16 +73,18 @@ function FormsRegister() {
         <div className='divButtons1'>
           <Button
             text="Registrar"
-            width="15vw"
+            width="14vw"
             height="6vh"
+            fontSize="18px"
           />
 
           <p>Já tem uma conta?</p>
 
-          <Link to="/login"><Button
+          <Link style={{textDecoration: "none"}} to="/login"><Button
             text="Faça login"
-            width="15vw"
+            width="14vw"
             height="6vh"
+            fontSize="18px"
           /></Link>
         </div>
       </Form>

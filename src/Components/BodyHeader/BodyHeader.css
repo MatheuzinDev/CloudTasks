@@ -1,9 +1,13 @@
+body {
+    overflow-x: hidden;
+}
+
 .bodyHeader {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 14vh;
-    height: 50vh;
+    margin-top: 10vh;
+    height: 60vh;
     width: 70vw;
     flex-direction: column;
     justify-content: space-between;
@@ -11,7 +15,7 @@
 }
 
 .bodyHeader h2 {
-    font-size: 70px;
+    font-size: 60px;
     font-family: "Montserrat", sans-serif;
 }
 

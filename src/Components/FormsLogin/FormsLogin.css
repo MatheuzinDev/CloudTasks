@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     gap: 5vh;
-    height: 62vh;
+    height: 70vh;
     padding-top: 4vh;
     margin-left: 2vw;
 }
@@ -24,7 +24,7 @@
 }
 
 .label {
-    font-size: 22px;
+    font-size: 20px;
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;
     font-weight: bold;
@@ -37,10 +37,11 @@
     flex-direction: column;
     justify-content: space-between;
     height: 19vh;
+    gap: 1vh;
 }
 
 .divButtons p {
-    font-size: 18px;
+    font-size: 15px;
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;
     font-weight: bold;
