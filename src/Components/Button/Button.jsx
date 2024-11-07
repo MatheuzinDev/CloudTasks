@@ -9,8 +9,9 @@ function Button(props) {
     color: props.color,
     padding: props.padding,
     border: 'none',
-    borderRadius: props.borderRadius || '5px',
+    borderRadius: props.borderRadius,
     cursor: 'pointer',
+    marginLeft: props.marginLeft
   };
 
   

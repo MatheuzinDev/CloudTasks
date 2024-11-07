@@ -6,18 +6,18 @@ function Forms() {
   return (
     <>
       <Form className='childDivInputEmail'>
-      <h1 className='labelLogin'>Login</h1>
+        <h1 className='labelLogin'>Login</h1>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <div className='divInputEmail'>
             <Form.Label className='label'>Email:</Form.Label>
             <Input
-              width="80vw"
+              width="34vw"
               type="email"
               placeholder="Digite seu email"
               required
               height="2vh"
               border="none"
-              backgroundColor="rgb(204, 238, 251)"
+              backgroundColor="#AEE3F8"
               font-size="55px"
             />
           </div>
@@ -27,23 +27,33 @@ function Forms() {
           <div className='divInputEmail'>
             <Form.Label className='label'>Senha:</Form.Label>
             <Input
-              width="80vw"
+              width="34vw"
               type="email"
               placeholder="Digite sua senha"
               required
               height="2vh"
               border="none"
-              backgroundColor="rgb(204, 238, 251)"
+              backgroundColor="#AEE3F8"
             />
           </div>
         </Form.Group>
-        <Button
-          text="Login"
-          width="50vw"
-          height="5vh"
+        <div className='divButtons'>
+          <Button
+            text="Login"
+            width="15vw"
+            height="6vh"
+          />
 
-        />
+          <p>Não tem uma conta?</p>
+
+          <Button
+            text="Criar conta"
+            width="15vw"
+            height="6vh"
+          />
+        </div>
       </Form>
+
     </>
   );
 }

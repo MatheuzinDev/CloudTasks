@@ -2,13 +2,15 @@ import Header from "../Components/Header/Header"
 import BodyLogin from "../Components/BodyLogin/BodyLogin"
 
 function Login() {
-    return (
-      <>
-        <Header></Header>
+  return (
+    <>
+      <Header></Header>
+      <div style={{display: "flex", justifyContent: "center"}}>
         <BodyLogin></BodyLogin>
-      </>
-    )
-  }
-  
-  export default Login
-  
+      </div>
+      
+    </>
+  )
+}
+
+export default Login
