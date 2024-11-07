@@ -5,7 +5,7 @@ function Input(props) {
       width: props.width || '100%',           
       height: props.height || '40px',       
       backgroundColor: props.backgroundColor || '#fff',
-      color: props.color || '#000',           
+      color: props.color,           
       fontSize: props.fontSize || '16px',      
       padding: props.padding || '10px',         
       border: props.border || '1px solid #ccc', 

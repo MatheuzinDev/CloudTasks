@@ -1,4 +1,4 @@
-.divInputEmail {
+.divInputEmail1 {
     display: flex;
     flex-direction: column;
     gap: 1vh;
@@ -7,30 +7,29 @@
     font-family: "Montserrat", sans-serif;
 }
 
-.childDivInputEmail {
+.childDivInputEmail1 {
     display: flex;
     flex-direction: column;
     gap: 5vh;
-    height: 60vh;
-    padding-top: 4vh;
-    margin-left: 2vw;
+    height: 90vh;
+    margin-left: 2vw;  
 }
 
-.labelLogin {
+.labelLogin1 {
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;
     font-size: 32px;
     font-weight: bold;
 }
 
-.label {
+.label1 {
     font-size: 22px;
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;
     font-weight: bold;
 }
 
-.divButtons {
+.divButtons1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +38,7 @@
     height: 19vh;
 }
 
-.divButtons p {
+.divButtons1 p {
     font-size: 18px;
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;

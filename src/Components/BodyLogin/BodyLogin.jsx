@@ -1,12 +1,12 @@
-import Forms from "../Forms/Forms"
+import FormsLogin from "../FormsLogin/FormsLogin"
 import "../BodyLogin/BodyLogin.css"
 
 function BodyLogin() {
   return (
     <>
-    <div className="bodyLogin">
-      <Forms></Forms>
-    </div>
+      <div className="bodyLogin">
+        <FormsLogin></FormsLogin>
+      </div>
     </>
   )
 }

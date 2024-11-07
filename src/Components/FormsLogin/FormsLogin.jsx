@@ -1,8 +1,9 @@
 import Button from '../Button/Button';
 import Form from 'react-bootstrap/Form';
 import Input from '../Input/Input';
-import "../Forms/Forms.css"
-function Forms() {
+import "../FormsLogin/FormsLogin.css"
+import { Link } from 'react-router-dom';
+function FormsLogin() {
   return (
     <>
       <Form className='childDivInputEmail'>
@@ -15,7 +16,7 @@ function Forms() {
               type="email"
               placeholder="Digite seu email"
               required
-              height="2vh"
+              height="4vh"
               border="none"
               backgroundColor="#AEE3F8"
               font-size="55px"
@@ -31,7 +32,7 @@ function Forms() {
               type="email"
               placeholder="Digite sua senha"
               required
-              height="2vh"
+              height="4vh"
               border="none"
               backgroundColor="#AEE3F8"
             />
@@ -46,11 +47,11 @@ function Forms() {
 
           <p>Não tem uma conta?</p>
 
-          <Button
+          <Link to="/register"><Button
             text="Criar conta"
             width="15vw"
             height="6vh"
-          />
+          /></Link>
         </div>
       </Form>
 
@@ -58,4 +59,4 @@ function Forms() {
   );
 }
 
-export default Forms;
+export default FormsLogin;

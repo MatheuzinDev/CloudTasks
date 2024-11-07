@@ -1,0 +1,51 @@
+.divInputEmail {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    font-size: 20px;
+    width: 35vw;
+    font-family: "Montserrat", sans-serif;
+}
+
+.childDivInputEmail {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    height: 62vh;
+    padding-top: 4vh;
+    margin-left: 2vw;
+}
+
+.labelLogin {
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 22px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-weight: bold;
+}
+
+.divButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 19vh;
+}
+
+.divButtons p {
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-weight: bold;
+}
+
+.input::placeholder {
+    color: #6a8886;
+}
