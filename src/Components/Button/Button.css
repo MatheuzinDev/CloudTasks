@@ -6,6 +6,9 @@
     height: 10vh;
     border-radius: 5px;
     font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @media (min-width: 366px) and (max-width: 819px){

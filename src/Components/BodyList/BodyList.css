@@ -42,7 +42,7 @@
 }
 
 .task h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-family: "Montserrat", sans-serif;
     font-weight: lighter;
     font-weight: bold;
@@ -58,4 +58,43 @@
 .editIcon {
     width: 1.5vw;
     padding: 1vw;
+}
+
+.iconClose {
+    width: 1.5vw;
+    padding: 1vw;
+}
+
+.iconDelete {
+    width: 1.4vw;
+    padding: 1vw;
+}
+
+.divIcons {
+    width: 7vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.divTaskModal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#modal-modal-title {
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-weight: bold;
+}
+
+.divBottomModal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6vh;
+    
 }

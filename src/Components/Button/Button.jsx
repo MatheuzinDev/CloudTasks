@@ -11,7 +11,8 @@ function Button(props) {
     border: 'none',
     borderRadius: props.borderRadius,
     cursor: 'pointer',
-    marginLeft: props.marginLeft
+    marginLeft: props.marginLeft,
+    fontSize: props.fontSize,
   };
 
   
