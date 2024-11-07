@@ -1,0 +1,61 @@
+.buttonAdd {
+    width: 70vw;
+    height: 6vh;
+    background-color: #AEE3F8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 8vh;
+}
+
+.iconAdd {
+    width: 2vw;
+}
+
+.divTasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 3vh;
+}
+
+.task {
+    background-color: #DDF5FF;
+    width: 70vw;
+    height: 6vh;
+    display: flex;
+    align-items: center;
+    height: 8vh;
+    border-radius: 10px;
+    border: none;
+    justify-content: space-between;
+}
+
+.infoTask {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task h3 {
+    font-size: 24px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter;
+    font-weight: bold;
+}
+
+.bodyList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.editIcon {
+    width: 1.5vw;
+    padding: 1vw;
+}
