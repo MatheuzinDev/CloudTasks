@@ -16,6 +16,7 @@ function Input(props) {
     return (
       <input className="input"
         type={props.type || 'text'}  
+        name={props.name}
         placeholder={props.placeholder} 
         style={inputStyle}          
         value={props.value}           
