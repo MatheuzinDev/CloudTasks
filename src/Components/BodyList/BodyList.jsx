@@ -9,7 +9,7 @@ import Button from "../Button/Button"
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Input from "../Input/Input";
-import { getData } from "../../Services/tarefasService"
+import { getData, updateData, createData, deleteData } from "../../Services/tarefasService"
 function BodyList() {
 
     const style = {
@@ -32,6 +32,66 @@ function BodyList() {
     const [openModal, setOpenModal] = useState(false)
     const [openModalEdit, setOpenModalEdit] = useState(false)
     const [tarefas, setTarefas] = useState([])
+    const [novaTarefa, setNovaTarefa] = useState({
+        descricao: '',
+    })
+    const [tarefaEditada, setTarefaEditada] = useState({
+        descricao: ''
+    })
+
+    const handleCreateData = async (e) => {
+        e.preventDefault()
+        
+        if (!novaTarefa.descricao.trim()) {
+            alert("A tarefa não pode estar vazia!")
+            return
+        }
+
+        console.log(novaTarefa)
+    
+        try {
+            await createData(novaTarefa);
+            alert('Tarefa cadastrada com sucesso!')
+            setNovaTarefa({ descricao: "" })
+            handleClose()
+            fetchData()
+        } catch (error) {
+            alert(`Erro ao criar tarefa: ${error.response?.data?.message || error.message}`)
+        }
+    }
+
+    const handleUpdateData = async (e) => {
+        e.preventDefault()
+        console.log(tarefaEditada.id)
+        
+        if (!tarefaEditada.descricao.trim()) {
+            alert("A tarefa não pode estar vazia!")
+            return
+        }
+
+        try {
+            await updateData(tarefaEditada)
+            alert('Tarefa atualizada com sucesso')
+            setTarefaEditada({ id: '', descricao: '' })
+            handleCloseEdit()
+            fetchData()
+        } catch(error){
+            alert(`Erro ao atualizar tarefa: ${error.response?.data?.message || error.message}`)
+        }
+    }   
+    
+    const handleDeleteData = async (id) => {
+        const confirmarDelete = window.confirm("Tem certeza que deseja excluir esta tarefa?")
+        if(!confirmarDelete) return
+
+        try {
+            await deleteData(id)
+            alert('Tarefa deletada com sucesso')
+            fetchData()
+        } catch(error) {
+            alert(`Erro ao deletar tarefa: ${error.response?.data?.message || error.message}`)
+        }
+    }
 
     const fetchData = async () => {
         const token = localStorage.getItem("token")
@@ -48,7 +108,8 @@ function BodyList() {
         setOpenModal(false);
     }
 
-    const handleOpenEdit = () => {
+    const handleOpenEdit = (tarefa) => {
+        setTarefaEditada(tarefa)
         setOpenModalEdit(true);
     }
 
@@ -94,7 +155,7 @@ function BodyList() {
                                 border="none"
                                 backgroundColor="#AEE3F8"
                                 font-size="55px"
-
+                                onChange={(event) => setNovaTarefa({ ...novaTarefa, descricao: event.target.value })}
                             />
 
                             <Button
@@ -103,7 +164,50 @@ function BodyList() {
                                 fontSize="18px"
                                 height="6vh"
                                 marginLeft="39.6vw"
+                                onClick={handleCreateData}
+                            />
+                        </div>
 
+                    </Box>
+                </Modal>
+
+                <Modal
+                    open={openModalEdit}
+                    onClose={handleCloseEdit}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box sx={style}>
+                        <div className="divTaskModal">
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                Editar Tarefa
+                            </Typography>
+
+                            <img onClick={handleCloseEdit} className="iconClose" src={IconClose} alt="" />
+
+
+                        </div>
+                        <div className="divBottomModal">
+                            <Input
+                                width="48vw"
+                                type="email"
+                                placeholder="Edite sua tarefa:"
+                                required
+                                height="4vh"
+                                border="none"
+                                backgroundColor="#AEE3F8"
+                                font-size="55px"
+                                value={tarefaEditada.descricao}
+                                onChange={(event) => setTarefaEditada({ ...tarefaEditada, descricao: event.target.value })}
+                            />
+
+                            <Button
+                                text="Atualizar tarefa"
+                                width="10vw"
+                                fontSize="18px"
+                                height="6vh"
+                                marginLeft="39.6vw"
+                                onClick={handleUpdateData}
                             />
                         </div>
 
@@ -122,8 +226,8 @@ function BodyList() {
                                 <h3>{tarefa.descricao}</h3>
                             </div>
                             <div className="divIcons">
-                                <img onClick={handleOpenEdit} className="editIcon" src={EditIcon} alt="Editar" />
-                                <img className="iconDelete" src={IconDelete} alt="Deletar" />
+                                <img onClick={() => handleOpenEdit(tarefa)} className="editIcon" src={EditIcon} alt="Editar" />
+                                <img onClick={() => handleDeleteData(tarefa.id)} className="iconDelete" src={IconDelete} alt="Deletar" />
                             </div>
                         </div>
                     ))}
