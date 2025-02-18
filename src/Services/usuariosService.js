@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = "http://localhost:3000"
+const API_URL = "https://cloudtasks-backend.onrender.com"
 
 export const createData = async (usuario) => {
     return await axios.post(`${API_URL}/usuarios/register`, usuario)

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = "http://localhost:3000"
+const API_URL = "https://cloudtasks-backend.onrender.com"
 
 export const getData = async (token) => {
     return await axios.get(`${API_URL}/usuarios/tarefas`, {
