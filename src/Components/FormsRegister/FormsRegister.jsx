@@ -20,7 +20,6 @@ function FormsRegister() {
   const handleCreateData = async (e) => {
     e.preventDefault()
 
-    console.log("Enviando os dados:", usuarios);
     try {
       await createData(usuarios)
       alert('Usuário cadastrado com sucesso!')
