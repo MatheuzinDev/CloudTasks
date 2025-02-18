@@ -46,8 +46,6 @@ function BodyList() {
             alert("A tarefa não pode estar vazia!")
             return
         }
-
-        console.log(novaTarefa)
     
         try {
             await createData(novaTarefa);
@@ -62,7 +60,6 @@ function BodyList() {
 
     const handleUpdateData = async (e) => {
         e.preventDefault()
-        console.log(tarefaEditada.id)
         
         if (!tarefaEditada.descricao.trim()) {
             alert("A tarefa não pode estar vazia!")
@@ -93,10 +90,19 @@ function BodyList() {
         }
     }
 
+    const handleToggleStatus = async (tarefa) => {
+        const novoStatus = tarefa.status === "pendente" ? "concluida" : "pendente"
+        try {
+            await updateData({...tarefa, status: novoStatus})
+            fetchData()
+        } catch(error){
+            alert(`Erro ao atualizar status: ${error.response?.data?.message || error.message}`);
+        }
+    }
+
     const fetchData = async () => {
         const token = localStorage.getItem("token")
         const resultado = await getData(token)
-        console.log("Tarefas do usuário: ", resultado.data)
         setTarefas(resultado.data)
     }
 
@@ -219,7 +225,8 @@ function BodyList() {
                         <div key={tarefa.id} className="task">
                             <div className="infoTask">
                                 <Checkbox
-                                    defaultChecked
+                                    checked={tarefa.status === "concluida"} 
+                                    onChange={() => handleToggleStatus(tarefa)} 
                                     sx={{ '& .MuiSvgIcon-root': { fontSize: 24 } }}
                                     color="primary"
                                 />
