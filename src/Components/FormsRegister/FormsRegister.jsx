@@ -16,6 +16,8 @@ function FormsRegister() {
     senha: ''
   })
 
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+
   const [toastOpen, setToastOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [toastSeverity, setToastSeverity] = useState("success");
@@ -24,6 +26,13 @@ function FormsRegister() {
 
   const handleCreateData = async (e) => {
     e.preventDefault()
+
+    if(usuarios.senha !== confirmarSenha){
+      setToastMessage("As senhas não coincidem!");
+      setToastSeverity("error");
+      setToastOpen(true);
+      return
+    }
 
     try {
       await createData(usuarios)
@@ -105,6 +114,8 @@ function FormsRegister() {
               height="4vh"
               border="none"
               backgroundColor="#AEE3F8"
+              value={confirmarSenha}
+              onChange={(e) => setConfirmarSenha(e.target.value)}
             />
           </div>
         </Form.Group>
