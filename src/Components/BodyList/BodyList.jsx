@@ -10,6 +10,8 @@ import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Input from "../Input/Input";
 import { getData, updateData, createData, deleteData } from "../../Services/tarefasService"
+import { Snackbar, Alert } from '@mui/material';
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 function BodyList() {
 
     const style = {
@@ -38,67 +40,101 @@ function BodyList() {
     const [tarefaEditada, setTarefaEditada] = useState({
         descricao: ''
     })
+    const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
+
+    const [toastOpen, setToastOpen] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
+    const [toastSeverity, setToastSeverity] = useState("success");
 
     const handleCreateData = async (e) => {
         e.preventDefault()
-        
+
         if (!novaTarefa.descricao.trim()) {
-            alert("A tarefa não pode estar vazia!")
+            setToastMessage("A tarefa não pode estar vazia!");
+            setToastSeverity("error");
+            setToastOpen(true);
             return
         }
-    
+
         try {
             await createData(novaTarefa);
-            alert('Tarefa cadastrada com sucesso!')
+            setToastMessage("Tarefa criada com sucesso!")
+            setToastSeverity("success")
+            setToastOpen(true)
             setNovaTarefa({ descricao: "" })
             handleClose()
+
             fetchData()
         } catch (error) {
-            alert(`Erro ao criar tarefa: ${error.response?.data?.message || error.message}`)
+            setToastMessage("Erro ao cadastrar tarefa!");
+            setToastSeverity("error");
+            setToastOpen(true);
         }
     }
 
     const handleUpdateData = async (e) => {
         e.preventDefault()
-        
+
         if (!tarefaEditada.descricao.trim()) {
-            alert("A tarefa não pode estar vazia!")
+            setToastMessage("A tarefa não pode estar vazia!");
+            setToastSeverity("error");
+            setToastOpen(true);
             return
         }
 
         try {
             await updateData(tarefaEditada)
-            alert('Tarefa atualizada com sucesso')
+            setToastMessage("Tarefa atualizada com sucesso!")
+            setToastSeverity("success")
+            setToastOpen(true)
             setTarefaEditada({ id: '', descricao: '' })
             handleCloseEdit()
             fetchData()
-        } catch(error){
-            alert(`Erro ao atualizar tarefa: ${error.response?.data?.message || error.message}`)
+        } catch (error) {
+            setToastMessage("Erro ao atualizar tarefa!")
+            setToastSeverity("error")
+            setToastOpen(true)
         }
-    }   
-    
-    const handleDeleteData = async (id) => {
-        const confirmarDelete = window.confirm("Tem certeza que deseja excluir esta tarefa?")
-        if(!confirmarDelete) return
+    }
+
+    const handleDeleteData = async () => {
+        if (!selectedId) return
 
         try {
-            await deleteData(id)
-            alert('Tarefa deletada com sucesso')
+            await deleteData(selectedId)
+            setToastMessage("Tarefa deletada com sucesso!")
+            setToastSeverity("success")
+            setToastOpen(true)
             fetchData()
-        } catch(error) {
-            alert(`Erro ao deletar tarefa: ${error.response?.data?.message || error.message}`)
+        } catch (error) {
+            setToastMessage("Erro ao deletar tarefa!")
+            setToastSeverity("error")
+            setToastOpen(true)
         }
+
+        handleDialogClose()
     }
 
     const handleToggleStatus = async (tarefa) => {
         const novoStatus = tarefa.status === "pendente" ? "concluida" : "pendente"
         try {
-            await updateData({...tarefa, status: novoStatus})
+            await updateData({ ...tarefa, status: novoStatus })
             fetchData()
-        } catch(error){
+        } catch (error) {
             alert(`Erro ao atualizar status: ${error.response?.data?.message || error.message}`);
         }
     }
+
+    const handleDialogOpen = (id) => {
+        setSelectedId(id);
+        setOpenDeleteDialog(true);
+    };
+
+    const handleDialogClose = () => {
+        setOpenDeleteDialog(false);
+        setSelectedId(null);
+    };
 
     const fetchData = async () => {
         const token = localStorage.getItem("token")
@@ -225,8 +261,8 @@ function BodyList() {
                         <div key={tarefa.id} className="task">
                             <div className="infoTask">
                                 <Checkbox
-                                    checked={tarefa.status === "concluida"} 
-                                    onChange={() => handleToggleStatus(tarefa)} 
+                                    checked={tarefa.status === "concluida"}
+                                    onChange={() => handleToggleStatus(tarefa)}
                                     sx={{ '& .MuiSvgIcon-root': { fontSize: 24 } }}
                                     color="primary"
                                 />
@@ -234,12 +270,55 @@ function BodyList() {
                             </div>
                             <div className="divIcons">
                                 <img onClick={() => handleOpenEdit(tarefa)} className="editIcon" src={EditIcon} alt="Editar" />
-                                <img onClick={() => handleDeleteData(tarefa.id)} className="iconDelete" src={IconDelete} alt="Deletar" />
+                                <img onClick={() => handleDialogOpen(tarefa.id)} className="iconDelete" src={IconDelete} alt="Deletar" />
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
+
+            <Snackbar
+                open={toastOpen}
+                autoHideDuration={3000}
+                onClose={() => setToastOpen(false)}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert onClose={() => setToastOpen(false)} severity={toastSeverity} sx={{ width: '100%' }}>
+                    {toastMessage}
+                </Alert>
+            </Snackbar>
+
+            <Dialog open={openDeleteDialog} onClose={handleDialogClose}>
+                <DialogTitle>Confirmar exclusão</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Tem certeza que deseja excluir esta tarefa? Essa ação não pode ser desfeita.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button
+                        text="Cancelar"
+                        onClick={handleDialogClose}
+                        width="10vw"
+                        height="6vh"
+                        fontSize="18px"
+                        backgroundColor="#ccc"
+                        color="#000"
+                        borderRadius="5px">
+                    </Button>
+                    <Button
+                        text="Excluir"
+                        onClick={handleDeleteData}
+                        width="10vw"
+                        height="6vh"
+                        fontSize="18px"
+                        backgroundColor="#d32f2f"
+                        color="#fff"
+                        borderRadius="5px">
+                        Excluir
+                    </Button>
+                </DialogActions>
+            </Dialog>
 
         </>
     )

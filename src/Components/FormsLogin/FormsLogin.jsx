@@ -6,11 +6,16 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginData } from '../../Services/usuariosService';
+import { Snackbar, Alert } from '@mui/material';
 function FormsLogin() {
   const [usuarios, setUsuarios] = useState({
     email: '',
     senha: ''
   })
+
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastSeverity, setToastSeverity] = useState("success");
 
   const navigate = useNavigate()
 
@@ -19,10 +24,16 @@ function FormsLogin() {
 
     try {
       await loginData(usuarios)
-      alert("Logado com sucesso")
-      navigate("/list")
+      setToastMessage("Usuário logado com sucesso!")
+      setToastSeverity("success")
+      setToastOpen(true)
+      setTimeout(() => {
+        navigate('/list');
+      }, 2000);
     } catch(error) {
-      alert(`Ocorre um erro ${error}`)
+      setToastMessage("Erro ao logar usuário.");
+      setToastSeverity("error");
+      setToastOpen(true);
     }
   }
 
@@ -83,6 +94,17 @@ function FormsLogin() {
           /></Link>
         </div>
       </Form>
+
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={3000}
+        onClose={() => setToastOpen(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setToastOpen(false)} severity={toastSeverity} sx={{ width: '100%' }}>
+          {toastMessage}
+        </Alert>
+      </Snackbar>
 
     </>
   );

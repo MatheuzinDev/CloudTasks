@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { createData } from '../../Services/usuariosService';
+import { Snackbar, Alert } from '@mui/material';
 
 function FormsRegister() {
 
@@ -15,6 +16,10 @@ function FormsRegister() {
     senha: ''
   })
 
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastSeverity, setToastSeverity] = useState("success");
+
   const navigate = useNavigate()
 
   const handleCreateData = async (e) => {
@@ -22,10 +27,16 @@ function FormsRegister() {
 
     try {
       await createData(usuarios)
-      alert('Usuário cadastrado com sucesso!')
-      navigate('/login')
+      setToastMessage("Usuário cadastrado com sucesso!")
+      setToastSeverity("success")
+      setToastOpen(true)
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
-      alert(`Erro ao cadastrar usuário: ${error}`)
+      setToastMessage("Erro ao cadastrar usuário.");
+      setToastSeverity("error");
+      setToastOpen(true);
     }
   }
   
@@ -38,7 +49,7 @@ function FormsRegister() {
             <Form.Label className='label1'>Nome de usuário:</Form.Label>
             <Input
               width="34vw"
-              type="name"
+              type="text"
               placeholder="Digite seu nome"
               height="4vh"
               border="none"
@@ -116,6 +127,17 @@ function FormsRegister() {
           /></Link>
         </div>
       </Form>
+
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={3000}
+        onClose={() => setToastOpen(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert onClose={() => setToastOpen(false)} severity={toastSeverity} sx={{ width: '100%' }}>
+          {toastMessage}
+        </Alert>
+      </Snackbar>
 
     </>
   );
